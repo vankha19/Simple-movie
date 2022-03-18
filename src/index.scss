@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+@layer base {
+    body {
+        @apply bg-slate-900 font-body;
+    }
+}
+@layer components {
+    .page-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+.movie-list .swiper-slide {
+    width: 280px;
+    height: auto;
+}
+.banner .swiper-slide {
+    height: 500px;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .selected {
+        @apply text-primary;
+    }
+}

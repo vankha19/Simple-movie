@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import Main from "./components/layout/Main";
 import MoviePage from "./pages/MoviePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import Watch from "./pages/Watch";
 function App() {
     return (
         <Fragment>
@@ -23,8 +24,19 @@ function App() {
                         path="/movie/:movieId"
                         element={<MovieDetailPage> </MovieDetailPage>}
                     ></Route>
+                    <Route
+                        path="/watch/:movieId"
+                        element={<Watch> </Watch>}
+                    ></Route>
                 </Route>
-                {/* <Route path="*" element={<div>Page not found</div>}></Route> */}
+                <Route
+                    path="*"
+                    element={
+                        <div className="text-white text-center">
+                            Page not found
+                        </div>
+                    }
+                ></Route>
             </Routes>
         </Fragment>
     );

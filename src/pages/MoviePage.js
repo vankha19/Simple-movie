@@ -19,7 +19,6 @@ const MoviePage = () => {
     useEffect(() => {
         if (data && data.results) setMovies(data.results);
     }, [data]);
-    console.log(data);
     const handleFilterChange = (e) => {
         setFilter(e.target.value);
     };
@@ -38,7 +37,7 @@ const MoviePage = () => {
         setNextPage(e.selected + 1);
     };
     return (
-        <div className="py-10 page-container">
+        <div className="py-24 page-container">
             <div className="flex mb-10">
                 <div className="flex-1 ">
                     <input

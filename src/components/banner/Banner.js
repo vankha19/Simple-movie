@@ -12,7 +12,7 @@ const Banner = () => {
     const movies = data?.results || [];
 
     return (
-        <section className="banner h-[500px] page-container mb-20 overflow-hidden">
+        <section className="banner h-[500px] mb-20 overflow-hidden shadow-sm">
             <Swiper
                 modules={[Autoplay]}
                 grabCursor="true"

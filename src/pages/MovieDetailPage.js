@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { fetcher, tmdbAPI } from "../config";
 import { SwiperSlide, Swiper } from "swiper/react";
@@ -7,14 +7,17 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import { Player } from "react-tuby";
 import "react-tuby/css/main.css";
 import MovieCard from "../components/movie/MovieCard";
+import Button from "../components/button/Button";
 const MovieDetailPage = () => {
     const { movieId } = useParams();
+    const navigate = useNavigate();
     const { data, error } = useSWR(tmdbAPI.getMovieDetails(movieId), fetcher);
+    console.log(data);
     if (!data) return null;
     const { backdrop_path, poster_path, title, genres, overview } = data;
     return (
-        <div className="py-10 page-container">
-            <div className="relative w-full h-[500px]">
+        <div className="">
+            <div className="relative w-full h-[90vh]">
                 <div className="absolute inset-0 bg-black bg-opacity-70"></div>
                 <div
                     className="w-full h-full bg-cover bg-no-repeat"
@@ -31,6 +34,15 @@ const MovieDetailPage = () => {
                     className="w-full h-full object-cover rounded-xl"
                     alt=""
                 />
+            </div>
+            <div className="flex items-center justify-center mb-5">
+                <Button
+                    bgColor="primary"
+                    className="text-white"
+                    onClick={() => navigate(`/watch/${movieId}`)}
+                >
+                    Watch now
+                </Button>
             </div>
             <h1 className="text-center text-4xl font-bold text-white mb-10">
                 {title}
@@ -86,13 +98,14 @@ const MovieCredits = () => {
 const MovieVideo = () => {
     const { movieId } = useParams();
     const { data } = useSWR(tmdbAPI.getMovieMeta(movieId, "videos"), fetcher);
+    console.log(data);
     if (!data) return null;
     const { results } = data;
     if (!results || results.length <= 0) return null;
     return (
         <div className="mb-10">
             <div className="flex flex-col gap-10">
-                {results.slice(0, 2).map((item) => (
+                {results.slice(1, 3).map((item) => (
                     <div key={item.id}>
                         <h3 className="bg-purple-400 inline-block p-3 rounded-lg text-white">
                             {item.name}
@@ -123,11 +136,11 @@ const MovieSimilar = () => {
     if (!results || results.length <= 0) return null;
     return (
         <div className="py-10">
-            <h3 className="text-3xl text-white font-bold">Simalar movies</h3>
+            <h3 className="text-3xl text-white font-bold">Similar movies</h3>
             <div className="movie-list">
                 <Swiper
                     grabCursor={"true"}
-                    spaceBetween={25}
+                    spaceBetween={40}
                     slidesPerView={"auto"}
                 >
                     {results.map((item) => (

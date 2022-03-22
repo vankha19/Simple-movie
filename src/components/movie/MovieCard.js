@@ -5,7 +5,10 @@ const MovieCard = ({ movie }) => {
     const { title, vote_average, release_date, poster_path, id } = movie;
     const navigate = useNavigate();
     return (
-        <div className="movie-card flex flex-col bg-slate-800 p-3 rounded-lg text-white h-full select-none">
+        <div
+            onClick={() => navigate(`/movie/${id}`)}
+            className="movie-card flex flex-col bg-slate-800 p-3 rounded-lg text-white h-full select-none cursor-pointer"
+        >
             <img
                 src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
                 alt=""
@@ -17,12 +20,12 @@ const MovieCard = ({ movie }) => {
                     <span>{new Date(release_date).getFullYear()} </span>
                     <span>{vote_average}</span>
                 </div>
-                <Button
+                {/* <Button
                     bgColor="primary"
                     onClick={() => navigate(`/movie/${id}`)}
                 >
                     Watch now
-                </Button>
+                </Button> */}
             </div>
         </div>
     );
